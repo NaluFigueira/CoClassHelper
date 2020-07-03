@@ -1,9 +1,16 @@
 import React from 'react';
+import Stepper from './components/Stepper';
 
-// import { Container } from './styles';
+import GlobalStyle from './styles/global';
+import SectionController from './pages/SectionController';
 
 const src: React.FC = () => {
-  return <h1>Hello World</h1>;
+  return (
+    <>
+      <SectionController />
+      <GlobalStyle />
+    </>
+  );
 };
 
 export default src;
