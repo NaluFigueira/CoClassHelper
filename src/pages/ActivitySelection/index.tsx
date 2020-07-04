@@ -1,25 +1,7 @@
 import React from 'react';
 import { Container, Divider } from './styles';
 import { ActivitySelectionProps } from './types';
-
-const activities = [
-  {
-    id: 0,
-    name: 'Atividade 29/05 - Inglês - 1° ANO A',
-  },
-  {
-    id: 1,
-    name: 'Atividade 26/05 - Inglês - 1° ANO A',
-  },
-  {
-    id: 2,
-    name: 'Atividade 22/05 - Inglês - 1° ANO A',
-  },
-  {
-    id: 3,
-    name: 'Atividade 15/05 - Inglês - 1° ANO A',
-  },
-];
+import { activities } from '../../database/data';
 
 const ActivitySelection: React.FC<ActivitySelectionProps> = ({
   onSelectActivity,

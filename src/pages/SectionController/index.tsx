@@ -1,10 +1,11 @@
-import React, { useState, useCallback } from 'react';
+import React, { useContext } from 'react';
 import Stepper from '../../components/Stepper';
 import { StepNumber } from '../../components/Stepper/types';
 import SchoolSelection from '../SchoolSelection';
 import ClassSelection from '../ClassSelection';
 import ActivitySelection from '../ActivitySelection';
 import StudentsList from '../StudentsList';
+import SectionContext from '../../context/section';
 
 import { Container, SectionContainer } from './styles';
 
@@ -16,63 +17,38 @@ const {
 } = StepNumber;
 
 const SectionController: React.FC = () => {
-  const [step, setStep] = useState<StepNumber>(SCHOOL_SELECTION);
-  const [selectedSchool, setSelectedSchool] = useState<string>('');
-  const [selectedClass, setSelectedClass] = useState<string>('');
-  const [selectedActivity, setSelectedActivity] = useState<string>('');
-
-  const HandleChangeStep = useCallback((selectedStep: StepNumber) => {
-    if (selectedStep === SCHOOL_SELECTION) {
-      setSelectedSchool('');
-      setSelectedClass('');
-      setSelectedActivity('');
-    }
-    if (selectedStep === CLASS_SELECTION) {
-      setSelectedClass('');
-      setSelectedActivity('');
-    }
-    if (selectedStep === ACTIVITY_SELECTION) {
-      setSelectedActivity('');
-    }
-    setStep(selectedStep);
-  }, []);
-
-  const HandleSelectSchool = useCallback((newSchool: string) => {
-    setSelectedSchool(newSchool);
-    setStep(CLASS_SELECTION);
-  }, []);
-
-  const HandleSelectClass = useCallback((newClass: string) => {
-    setSelectedClass(newClass);
-    setStep(ACTIVITY_SELECTION);
-  }, []);
-
-  const HandleSelectActivity = useCallback((newActivity: string) => {
-    setSelectedActivity(newActivity);
-    setStep(STUDENT_LIST);
-  }, []);
+  const {
+    stepNumber,
+    selectedSchool,
+    selectedClass,
+    selectedActivity,
+    HandleChangeStep,
+    HandleSelectSchool,
+    HandleSelectClass,
+    HandleSelectActivity,
+  } = useContext(SectionContext);
 
   return (
     <Container>
-      <Stepper onChangeStep={HandleChangeStep} step={step} />
+      <Stepper onChangeStep={HandleChangeStep} step={stepNumber} />
       <SectionContainer>
-        {step === SCHOOL_SELECTION && (
+        {stepNumber === SCHOOL_SELECTION && (
           <SchoolSelection onSelectSchool={HandleSelectSchool} />
         )}
-        {step === CLASS_SELECTION && (
+        {stepNumber === CLASS_SELECTION && (
           <ClassSelection
             schoolName={selectedSchool}
             onSelectClass={HandleSelectClass}
           />
         )}
-        {step === ACTIVITY_SELECTION && (
+        {stepNumber === ACTIVITY_SELECTION && (
           <ActivitySelection
             schoolName={selectedSchool}
             className={selectedClass}
             onSelectActivity={HandleSelectActivity}
           />
         )}
-        {step === STUDENT_LIST && <StudentsList />}
+        {stepNumber === STUDENT_LIST && <StudentsList />}
       </SectionContainer>
     </Container>
   );

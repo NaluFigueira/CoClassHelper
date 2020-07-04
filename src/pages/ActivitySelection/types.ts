@@ -3,8 +3,3 @@ export interface ActivitySelectionProps {
   className: string;
   onSelectActivity(activityName: string): void;
 }
-
-export interface Activity {
-  id: number;
-  name: string;
-}

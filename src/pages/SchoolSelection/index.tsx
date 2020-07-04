@@ -1,21 +1,7 @@
 import React from 'react';
 import { Container } from './styles';
-import { SchoolSelectionProps, School } from './types';
-
-const schools: Array<School> = [
-  {
-    id: 0,
-    name: 'E.E. MONSENHOR SARRION',
-  },
-  {
-    id: 1,
-    name: 'E.E. ANTÔNIO FIORAVANTE',
-  },
-  {
-    id: 2,
-    name: 'E.E. MARIETTA FERRAZ DE ASSUNPÇÃO',
-  },
-];
+import { SchoolSelectionProps } from './types';
+import { schools } from '../../database/data';
 
 const SchoolSelection: React.FC<SchoolSelectionProps> = ({
   onSelectSchool,
