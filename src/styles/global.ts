@@ -31,7 +31,6 @@ export default createGlobalStyle`
   }
 
   button {
-    width: 95%;
     padding: 15px;
     margin: 10px 0px;
     border: 2px solid ${lighten(0.2, '#9b9b9b')};
@@ -39,6 +38,7 @@ export default createGlobalStyle`
     border-radius: 4px;
     color: ${darken(0.3, '#9b9b9b')};
     transition: border-color 0.2s;
+    width: 95%;
 
     &:hover {
       border-color: #04bfbf;

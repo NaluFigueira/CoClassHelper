@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 import Stepper from '../../components/Stepper';
 import { StepNumber } from '../../components/Stepper/types';
 import SchoolSelection from '../SchoolSelection';
@@ -17,18 +17,25 @@ const {
 
 const SectionController: React.FC = () => {
   const [step, setStep] = useState<StepNumber>(SCHOOL_SELECTION);
-  const [school, setSchool] = useState<string>('');
+  const [selectedSchool, setSelectedSchool] = useState<string>('');
+  const [selectedClass, setSelectedClass] = useState<string>('');
 
   const HandleChangeStep = useCallback((selectedStep: StepNumber) => {
     if (selectedStep === SCHOOL_SELECTION) {
-      setSchool('');
+      setSelectedSchool('');
     }
+    setSelectedClass('');
     setStep(selectedStep);
   }, []);
 
-  const HandleSelectSchool = useCallback((selectedSchool: string) => {
-    setSchool(selectedSchool);
+  const HandleSelectSchool = useCallback((newSchool: string) => {
+    setSelectedSchool(newSchool);
     setStep(CLASS_SELECTION);
+  }, []);
+
+  const HandleSelectClass = useCallback((newClass: string) => {
+    setSelectedClass(newClass);
+    setStep(ACTIVITY_SELECTION);
   }, []);
 
   return (
@@ -38,7 +45,12 @@ const SectionController: React.FC = () => {
         {step === SCHOOL_SELECTION && (
           <SchoolSelection onSelectSchool={HandleSelectSchool} />
         )}
-        {step === CLASS_SELECTION && <ClassSelection />}
+        {step === CLASS_SELECTION && (
+          <ClassSelection
+            schoolName={selectedSchool}
+            onSelectClass={HandleSelectClass}
+          />
+        )}
         {step === ACTIVITY_SELECTION && <ActivitySelection />}
         {step === STUDENT_LIST && <StudentsList />}
       </SectionContainer>

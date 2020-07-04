@@ -11,7 +11,7 @@ export const Container = styled.div`
 
 export const SectionContainer = styled.div`
   width: 80%;
-  max-height: 70%;
+  max-height: 70vh;
   border: 2px solid ${lighten(0.3, '#9b9b9b')};
   border-radius: 4px;
 `;
