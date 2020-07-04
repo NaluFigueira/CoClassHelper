@@ -1,5 +1,4 @@
 import React from 'react';
-import Stepper from './components/Stepper';
 
 import GlobalStyle from './styles/global';
 import SectionController from './pages/SectionController';

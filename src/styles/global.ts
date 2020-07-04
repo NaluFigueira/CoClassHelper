@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { darken, lighten } from 'polished';
 
 export default createGlobalStyle`
    *{
@@ -27,5 +28,36 @@ export default createGlobalStyle`
 
   button, h4 {
     cursor: pointer;
+  }
+
+  button {
+    width: 95%;
+    padding: 15px;
+    margin: 10px 0px;
+    border: 2px solid ${lighten(0.2, '#9b9b9b')};
+    background: transparent;
+    border-radius: 4px;
+    color: ${darken(0.3, '#9b9b9b')};
+    transition: border-color 0.2s;
+
+    &:hover {
+      border-color: #04bfbf;
+    }
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: ${darken(0.1, '#04BFBF')};
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #04BFBF;
   }
 `;

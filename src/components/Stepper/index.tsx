@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 
 import { Container, ArrowRight, StepTitle } from './styles';
 import { StepperProps, StepNumber } from './types';
@@ -15,6 +15,10 @@ const Stepper: React.FC<StepperProps> = ({
   step = STUDENT_LIST,
 }) => {
   const [stepNumber, setStepNumber] = useState<StepNumber>(step);
+
+  useEffect(() => {
+    setStepNumber(step);
+  }, [step]);
 
   const HandleChangeStep = useCallback(
     (newStep: StepNumber) => {
