@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Divider } from './styles';
 import { ActivitySelectionProps } from './types';
-import { activities, schools } from '../../database/data';
+import { activities, schools, classes } from '../../database/data';
 
 const ActivitySelection: React.FC<ActivitySelectionProps> = ({
   onSelectActivity,
@@ -9,7 +9,7 @@ const ActivitySelection: React.FC<ActivitySelectionProps> = ({
   classId,
 }) => {
   const schoolName = schools.find((school) => school.id === schoolId)?.name;
-  const className = schools.find((c) => c.id === classId)?.name;
+  const className = classes.find((c) => c.id === classId)?.name;
   const classActivities = activities.filter(
     (activity) => activity.classId === classId,
   );
