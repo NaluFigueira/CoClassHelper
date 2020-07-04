@@ -8,13 +8,17 @@ const SchoolSelection: React.FC<SchoolSelectionProps> = ({
 }) => {
   return (
     <Container>
-      {schools.map((school) => (
-        <div key={school.id}>
-          <button type="button" onClick={() => onSelectSchool(school.name)}>
-            {school.name}
-          </button>
-        </div>
-      ))}
+      {schools.length === 0 ? (
+        <h3>Não há escolas cadastradas!</h3>
+      ) : (
+        schools.map((school) => (
+          <div key={school.id}>
+            <button type="button" onClick={() => onSelectSchool(school.id)}>
+              {school.name}
+            </button>
+          </div>
+        ))
+      )}
     </Container>
   );
 };

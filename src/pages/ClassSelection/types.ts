@@ -1,4 +1,4 @@
 export interface ClassSelectionProps {
-  schoolName: string;
-  onSelectClass(className: string): void;
+  schoolId: number;
+  onSelectClass(classId: number): void;
 }

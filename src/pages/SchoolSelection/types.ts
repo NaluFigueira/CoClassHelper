@@ -1,3 +1,3 @@
 export interface SchoolSelectionProps {
-  onSelectSchool(school: string): void;
+  onSelectSchool(schoolId: number): void;
 }

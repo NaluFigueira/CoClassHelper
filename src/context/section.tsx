@@ -3,14 +3,14 @@ import { StepNumber } from '../components/Stepper/types';
 
 export interface SectionContextData {
   stepNumber: StepNumber;
-  selectedSchool: string;
-  selectedClass: string;
-  selectedActivity: string;
+  selectedSchool: number;
+  selectedClass: number;
+  selectedActivity: number;
 
   HandleChangeStep(selectedStep: StepNumber): void;
-  HandleSelectSchool(newSchool: string): void;
-  HandleSelectClass(newClass: string): void;
-  HandleSelectActivity(newActivity: string): void;
+  HandleSelectSchool(newSchool: number): void;
+  HandleSelectClass(newClass: number): void;
+  HandleSelectActivity(newActivity: number): void;
 }
 
 const {
@@ -26,37 +26,37 @@ const SectionContext = createContext<SectionContextData>(
 
 export const SectionProvider: React.FC = ({ children }) => {
   const [stepNumber, setStepNumber] = useState<StepNumber>(SCHOOL_SELECTION);
-  const [selectedSchool, setSelectedSchool] = useState<string>('');
-  const [selectedClass, setSelectedClass] = useState<string>('');
-  const [selectedActivity, setSelectedActivity] = useState<string>('');
+  const [selectedSchool, setSelectedSchool] = useState<number>(0);
+  const [selectedClass, setSelectedClass] = useState<number>(0);
+  const [selectedActivity, setSelectedActivity] = useState<number>(0);
 
   const HandleChangeStep = useCallback((selectedStep: StepNumber) => {
     if (selectedStep === SCHOOL_SELECTION) {
-      setSelectedSchool('');
-      setSelectedClass('');
-      setSelectedActivity('');
+      setSelectedSchool(0);
+      setSelectedClass(0);
+      setSelectedActivity(0);
     }
     if (selectedStep === CLASS_SELECTION) {
-      setSelectedClass('');
-      setSelectedActivity('');
+      setSelectedClass(0);
+      setSelectedActivity(0);
     }
     if (selectedStep === ACTIVITY_SELECTION) {
-      setSelectedActivity('');
+      setSelectedActivity(0);
     }
     setStepNumber(selectedStep);
   }, []);
 
-  const HandleSelectSchool = useCallback((newSchool: string) => {
+  const HandleSelectSchool = useCallback((newSchool: number) => {
     setSelectedSchool(newSchool);
     setStepNumber(CLASS_SELECTION);
   }, []);
 
-  const HandleSelectClass = useCallback((newClass: string) => {
+  const HandleSelectClass = useCallback((newClass: number) => {
     setSelectedClass(newClass);
     setStepNumber(ACTIVITY_SELECTION);
   }, []);
 
-  const HandleSelectActivity = useCallback((newActivity: string) => {
+  const HandleSelectActivity = useCallback((newActivity: number) => {
     setSelectedActivity(newActivity);
     setStepNumber(STUDENT_LIST);
   }, []);

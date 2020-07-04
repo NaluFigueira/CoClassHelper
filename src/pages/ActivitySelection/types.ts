@@ -1,5 +1,5 @@
 export interface ActivitySelectionProps {
-  schoolName: string;
-  className: string;
-  onSelectActivity(activityName: string): void;
+  schoolId: number;
+  classId: number;
+  onSelectActivity(activityId: number): void;
 }

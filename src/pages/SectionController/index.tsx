@@ -37,14 +37,14 @@ const SectionController: React.FC = () => {
         )}
         {stepNumber === CLASS_SELECTION && (
           <ClassSelection
-            schoolName={selectedSchool}
+            schoolId={selectedSchool}
             onSelectClass={HandleSelectClass}
           />
         )}
         {stepNumber === ACTIVITY_SELECTION && (
           <ActivitySelection
-            schoolName={selectedSchool}
-            className={selectedClass}
+            schoolId={selectedSchool}
+            classId={selectedClass}
             onSelectActivity={HandleSelectActivity}
           />
         )}
