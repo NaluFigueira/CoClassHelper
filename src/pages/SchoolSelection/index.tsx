@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Container } from './styles';
-import { SchoolSelectionProps } from './types';
 import { schools } from '../../database/data';
+import SectionContext from '../../context/section';
 
-const SchoolSelection: React.FC<SchoolSelectionProps> = ({
-  onSelectSchool,
-}) => {
+const SchoolSelection: React.FC = () => {
+  const { HandleSelectSchool } = useContext(SectionContext);
+
   return (
     <Container>
       {schools.length === 0 ? (
@@ -13,7 +13,7 @@ const SchoolSelection: React.FC<SchoolSelectionProps> = ({
       ) : (
         schools.map((school) => (
           <div key={school.id}>
-            <button type="button" onClick={() => onSelectSchool(school.id)}>
+            <button type="button" onClick={() => HandleSelectSchool(school)}>
               {school.name}
             </button>
           </div>

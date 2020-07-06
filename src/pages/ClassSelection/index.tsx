@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Container, Divider } from './styles';
-import { ClassSelectionProps } from './types';
 import { classes, schools } from '../../database/data';
+import SectionContext from '../../context/section';
 
-const ClassSelection: React.FC<ClassSelectionProps> = ({
-  schoolId,
-  onSelectClass,
-}) => {
-  const schoolClasses = classes.filter((c) => c.schoolId === schoolId);
-  const schoolName = schools.find((school) => school.id === schoolId)?.name;
+const ClassSelection: React.FC = () => {
+  const { selectedSchool, HandleSelectClass } = useContext(SectionContext);
+  const schoolClasses = classes.filter(
+    (c) => c.schoolId === selectedSchool?.id,
+  );
+  const schoolName = schools.find((school) => school.id === selectedSchool?.id)
+    ?.name;
   return (
     <Container>
       {schoolClasses.length === 0 ? (
@@ -23,7 +24,7 @@ const ClassSelection: React.FC<ClassSelectionProps> = ({
               <div key={schoolClass.id}>
                 <button
                   type="button"
-                  onClick={() => onSelectClass(schoolClass.id)}
+                  onClick={() => HandleSelectClass(schoolClass)}
                 >
                   {schoolClass.name}
                 </button>

@@ -17,37 +17,15 @@ const {
 } = StepNumber;
 
 const SectionController: React.FC = () => {
-  const {
-    stepNumber,
-    selectedSchool,
-    selectedClass,
-    selectedActivity,
-    HandleChangeStep,
-    HandleSelectSchool,
-    HandleSelectClass,
-    HandleSelectActivity,
-  } = useContext(SectionContext);
+  const { stepNumber, HandleChangeStep } = useContext(SectionContext);
 
   return (
     <Container>
       <Stepper onChangeStep={HandleChangeStep} step={stepNumber} />
       <SectionContainer>
-        {stepNumber === SCHOOL_SELECTION && (
-          <SchoolSelection onSelectSchool={HandleSelectSchool} />
-        )}
-        {stepNumber === CLASS_SELECTION && (
-          <ClassSelection
-            schoolId={selectedSchool}
-            onSelectClass={HandleSelectClass}
-          />
-        )}
-        {stepNumber === ACTIVITY_SELECTION && (
-          <ActivitySelection
-            schoolId={selectedSchool}
-            classId={selectedClass}
-            onSelectActivity={HandleSelectActivity}
-          />
-        )}
+        {stepNumber === SCHOOL_SELECTION && <SchoolSelection />}
+        {stepNumber === CLASS_SELECTION && <ClassSelection />}
+        {stepNumber === ACTIVITY_SELECTION && <ActivitySelection />}
         {stepNumber === STUDENT_LIST && <StudentsList />}
       </SectionContainer>
     </Container>

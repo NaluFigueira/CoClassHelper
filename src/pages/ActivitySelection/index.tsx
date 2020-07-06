@@ -1,17 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Container, Divider } from './styles';
-import { ActivitySelectionProps } from './types';
 import { activities, schools, classes } from '../../database/data';
+import SectionContext from '../../context/section';
 
-const ActivitySelection: React.FC<ActivitySelectionProps> = ({
-  onSelectActivity,
-  schoolId,
-  classId,
-}) => {
-  const schoolName = schools.find((school) => school.id === schoolId)?.name;
-  const className = classes.find((c) => c.id === classId)?.name;
+const ActivitySelection: React.FC = () => {
+  const { selectedSchool, selectedClass, HandleSelectActivity } = useContext(
+    SectionContext,
+  );
+  const schoolName = schools.find((school) => school.id === selectedSchool?.id)
+    ?.name;
+  const className = classes.find((c) => c.id === selectedClass?.id)?.name;
   const classActivities = activities.filter(
-    (activity) => activity.classId === classId,
+    (activity) => activity.classId === selectedClass?.id,
   );
 
   return (
@@ -28,7 +28,7 @@ const ActivitySelection: React.FC<ActivitySelectionProps> = ({
               <div key={activity.id}>
                 <button
                   type="button"
-                  onClick={() => onSelectActivity(activity.id)}
+                  onClick={() => HandleSelectActivity(activity)}
                 >
                   {activity.name}
                 </button>
