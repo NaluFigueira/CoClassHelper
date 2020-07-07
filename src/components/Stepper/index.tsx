@@ -1,7 +1,8 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useContext } from 'react';
 
 import { Container, ArrowRight, StepTitle } from './styles';
 import { StepperProps, StepNumber } from './types';
+import SectionContext from '../../context/section';
 
 const {
   SCHOOL_SELECTION,
@@ -14,6 +15,9 @@ const Stepper: React.FC<StepperProps> = ({
   onChangeStep,
   step = STUDENT_LIST,
 }) => {
+  const { selectedSchool, selectedClass, selectedActivity } = useContext(
+    SectionContext,
+  );
   const [stepNumber, setStepNumber] = useState<StepNumber>(step);
 
   useEffect(() => {
@@ -35,6 +39,7 @@ const Stepper: React.FC<StepperProps> = ({
           <h4 onClick={() => HandleChangeStep(SCHOOL_SELECTION)}>
             Selecione uma escola
           </h4>
+          <h6>{selectedSchool?.name}</h6>
         </StepTitle>
         {stepNumber >= CLASS_SELECTION && (
           <>
@@ -43,6 +48,7 @@ const Stepper: React.FC<StepperProps> = ({
               <h4 onClick={() => HandleChangeStep(CLASS_SELECTION)}>
                 Selecione uma turma
               </h4>
+              <h6>{selectedClass?.name}</h6>
             </StepTitle>
           </>
         )}
@@ -53,6 +59,7 @@ const Stepper: React.FC<StepperProps> = ({
               <h4 onClick={() => HandleChangeStep(ACTIVITY_SELECTION)}>
                 Selecione uma atividade
               </h4>
+              <h6>{selectedActivity?.name}</h6>
             </StepTitle>
           </>
         )}

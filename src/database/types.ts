@@ -24,6 +24,7 @@ export interface Student {
 export interface StudentActivityControl {
   activityId: number;
   studentId: number;
-  grade: number;
+  grade: string;
   submitted: boolean;
+  studentName: string;
 }

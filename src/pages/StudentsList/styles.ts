@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { darken } from 'polished';
 
 export const Container = styled.div`
   width: 100%;
@@ -6,18 +7,23 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 10px;
   max-height: 100%;
+  overflow-y: scroll;
 
   > strong {
     font-size: 18px;
   }
 
-  > div {
+  table {
     width: 100%;
-    overflow-y: scroll;
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-    padding: 10px;
+    text-align: center;
+
+    input:focus {
+      border: 1px solid ${darken(0.1, '#04BFBF')};
+    }
+
+    input[type='checkbox'] {
+      transform: scale(1.5);
+    }
   }
 `;

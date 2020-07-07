@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { lighten } from 'polished';
 
 export const Container = styled.div`
   width: 100%;
@@ -21,13 +20,4 @@ export const Container = styled.div`
     grid-template-columns: auto auto auto auto;
     padding: 10px;
   }
-`;
-
-export const Divider = styled.div`
-  height: 1px !important;
-  width: 50% !important;
-  padding: 0 !important;
-  margin-top: 5px;
-  margin-bottom: 10px;
-  background-color: ${lighten(0.2, '#9b9b9b')};
 `;
